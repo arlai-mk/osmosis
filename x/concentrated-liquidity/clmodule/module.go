@@ -19,6 +19,7 @@ import (
 	"github.com/osmosis-labs/osmosis/v15/simulation/simtypes"
 	"github.com/osmosis-labs/osmosis/v15/x/concentrated-liquidity/client/cli"
 	clmodel "github.com/osmosis-labs/osmosis/v15/x/concentrated-liquidity/model"
+	"github.com/osmosis-labs/osmosis/v15/x/concentrated-liquidity/simulation"
 	"github.com/osmosis-labs/osmosis/v15/x/concentrated-liquidity/types/query"
 
 	clkeeper "github.com/osmosis-labs/osmosis/v15/x/concentrated-liquidity"
@@ -154,12 +155,11 @@ func (am AppModule) GenerateGenesisState(simState *module.SimulationState, s *si
 
 func (am AppModule) Actions() []simtypes.Action {
 	return []simtypes.Action{
-		// simtypes.NewMsgBasedAction("CreateConcentratedPool", am.keeper, simulation.RandomMsgCreateConcentratedPool),
-		// simtypes.NewMsgBasedAction("CreatePosition", am.keeper, simulation.RandMsgCreatePosition),
-		// simtypes.NewMsgBasedAction("CLSwapExactAmountIn", am.keeper, simulation.RandomSwapExactAmountIn),
-		// simtypes.NewMsgBasedAction("CLSwapExactAmountOut", am.keeper, simulation.RandomSwapExactAmountOut),
-		// simtypes.NewMsgBasedAction("WithdrawPosition", am.keeper, simulation.RandMsgWithdrawPosition),
-		// simtypes.NewMsgBasedAction("CollectFees", am.keeper, simulation.RandMsgCollectFees),
-		// simtypes.NewMsgBasedAction("CollectIncentives", am.keeper, simulation.RandMsgCollectIncentives),
+		simtypes.NewMsgBasedAction("CreateConcentratedPool", am.keeper, simulation.RandomMsgCreateConcentratedPool),
+		simtypes.NewMsgBasedAction("CreatePosition", am.keeper, simulation.RandMsgCreatePosition),
+		simtypes.NewMsgBasedAction("WithdrawPosition", am.keeper, simulation.RandMsgWithdrawPosition),
+		simtypes.NewMsgBasedAction("CollectFees", am.keeper, simulation.RandMsgCollectFeesFullFlow),
+		simtypes.NewMsgBasedAction("CollectIncentives", am.keeper, simulation.RandMsgCollectIncentivesFullFlow),
+		simtypes.NewMsgBasedAction("CreateIncentives", am.keeper, simulation.RandMsgCreateIncentives),
 	}
 }

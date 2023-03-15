@@ -12,7 +12,7 @@ import (
 	types "github.com/osmosis-labs/osmosis/v15/x/concentrated-liquidity/types"
 )
 
-// createPosition creates a concentrated liquidity position in range between lowerTick and upperTick
+// CreatePosition creates a concentrated liquidity position in range between lowerTick and upperTick
 // in a given `PoolId with the desired amount of each token. Since LPs are only allowed to provide
 // liquidity proportional to the existing reserves, the actual amount of tokens used might differ from requested.
 // As a result, LPs may also provide the minimum amount of each token to be used so that the system fails
@@ -28,7 +28,7 @@ import (
 // - the liquidity delta is zero
 // - the amount0 or amount1 returned from the position update is less than the given minimums
 // - the pool or user does not have enough tokens to satisfy the requested amount
-func (k Keeper) createPosition(ctx sdk.Context, poolId uint64, owner sdk.AccAddress, amount0Desired, amount1Desired, amount0Min, amount1Min sdk.Int, lowerTick, upperTick int64) (uint64, sdk.Int, sdk.Int, sdk.Dec, time.Time, error) {
+func (k Keeper) CreatePosition(ctx sdk.Context, poolId uint64, owner sdk.AccAddress, amount0Desired, amount1Desired, amount0Min, amount1Min sdk.Int, lowerTick, upperTick int64) (uint64, sdk.Int, sdk.Int, sdk.Dec, time.Time, error) {
 	// get current blockTime that user joins the position
 	joinTime := ctx.BlockTime()
 
