@@ -307,3 +307,15 @@ func (k Keeper) chargeFeeIfSufficientFeeDenomBalance(ctx sdk.Context, address sd
 	}
 	return nil
 }
+
+// OverwriteGaugeV16MigrationUnsafe is a temporary method for calling from the v16 upgrade handler
+// to fix the Huahua gauges. Do not use for other purposes.
+func (k Keeper) OverwriteGaugeV16MigrationUnsafe(ctx sdk.Context, gauges []types.Gauge) error {
+	for _, gauge := range gauges {
+		err := k.setGauge(ctx, &gauge)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
