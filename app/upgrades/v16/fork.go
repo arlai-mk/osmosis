@@ -23,7 +23,7 @@ func RunForkLogic(ctx sdk.Context, appKeepers *keepers.AppKeepers) {
 
 // Some gauges were incorrectly created for pools 605 (HUAHUA / OSMO) and 606 (HUAHUA / ATOM)
 // and this error prevented them from distributing 6 billion HUAHUA tokens as incentives.
-// This fix is here to release these incentives to their respective pools correctly.
+// This fix is here to release the coins locked in gauges to the Huahua team wallet and archive these gauges
 func FixHuahuaGauges(ctx sdk.Context, incentiveskeeper *incentiveskeeper.Keeper, bank bankkeeper.Keeper) {
 	// Huahua incorrect gauges are IDs 1954 to 1959
 	gaugeIDs := []uint64{1954, 1955, 1956, 1957, 1958, 1959}
