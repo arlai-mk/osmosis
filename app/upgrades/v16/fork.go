@@ -47,9 +47,13 @@ func FixHuahuaGauges(ctx sdk.Context, incentiveskeeper *incentiveskeeper.Keeper,
 	allCoins := sdk.Coins{}
 
 	for _, gauge := range gauges {
+		// make sure that we selected the Huahua gauges that have incorrect QueryCondition (DistributeTo.Denom)
+		if gauge.DistributeTo.Denom != "GAMM605" && gauge.DistributeTo.Denom != "GAMM606" {
+			panic("v16 upgrade: Didn't retrieve expected Huahua gauges")
+		}
+
 		// retrieve the exact amount of coins from the gauge
 		allCoins = allCoins.Add(gauge.Coins...)
-
 		// reset the gauge to no coin
 		gauge.Coins = sdk.Coins{}
 		// mark the gauge as filled over the required num of epochs
