@@ -48,7 +48,7 @@ func FixHuahuaGauges(ctx sdk.Context, incentiveskeeper *incentiveskeeper.Keeper,
 
 	for _, gauge := range gauges {
 		// retrieve the exact amount of coins from the gauge
-		allCoins = append(allCoins, gauge.Coins...)
+		allCoins = allCoins.Add(gauge.Coins...)
 
 		// reset the gauge to no coin
 		gauge.Coins = sdk.Coins{}
