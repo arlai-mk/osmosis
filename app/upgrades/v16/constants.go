@@ -19,14 +19,3 @@ var Upgrade = upgrades.Upgrade{
 		Deleted: []string{},
 	},
 }
-
-// ForkHeight defines the block height at which the Osmosis v16 upgrade is
-// triggered.
-// Block height [Write block height as X_XXX_XXX when decided], approximately [Write approximate UTC time here when decided]
-const ForkHeight = 9999999 // TODO: set the appropriate height when decided
-
-var Fork = upgrades.Fork{
-	UpgradeName:    UpgradeName,
-	UpgradeHeight:  ForkHeight,
-	BeginForkLogic: RunForkLogic,
-}
